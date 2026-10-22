@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Central de Conexões do TaskInput</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <a class="pular" href="#mesa">Ir para o painel de ligações</a>
+
+  <!-- Tela inicial: como funciona e escolhas antes de começar -->
+  <main id="tela-inicio" class="tela tela-inicio">
+    <div class="inicio-coluna">
+      <div class="inicio-marca" id="marca-inicio"></div>
+      <h1 class="inicio-titulo">Central de Conexões do TaskInput</h1>
+      <p class="inicio-lead">
+        Cada código do TaskInput faz alguma coisa. Ligue cada um ao efeito certo com um cabo
+        e veja o celular de teste ganhar vida.
+      </p>
+
+      <ol class="como">
+        <li>
+          <strong>Ligue com um cabo.</strong>
+          Arraste do código até o efeito. Também vale clicar no código e depois no efeito,
+          ou usar Tab, Enter e as setas do teclado.
+        </li>
+        <li>
+          <strong>Olhe o celular.</strong>
+          Cada ligação certa conserta uma parte dele. Algumas mostram um defeito de propósito.
+        </li>
+        <li>
+          <strong>Errou? Sem problema.</strong>
+          Uma janela explica o que o código realmente faz. Em cada estação sobra um efeito
+          que não pertence a nenhum código.
+        </li>
+      </ol>
+
+      <form class="inicio-opcoes" id="form-inicio" autocomplete="off">
+        <fieldset class="opcao-grupo">
+          <legend>Dicas durante o jogo</legend>
+          <label class="opcao">
+            <input type="radio" name="dicas" value="limitada" checked>
+            <span><strong>6 dicas</strong> no jogo todo</span>
+          </label>
+          <label class="opcao">
+            <input type="radio" name="dicas" value="ilimitada">
+            <span><strong>Dicas ilimitadas</strong></span>
+          </label>
+        </fieldset>
+        <label class="opcao opcao-solta">
+          <input type="checkbox" id="opt-tutorial" checked>
+          <span>Mostrar o tutorial passo a passo na primeira estação</span>
+        </label>
+        <button type="submit" class="botao botao-primario botao-grande" id="btn-comecar">Começar</button>
+      </form>
+      <p class="inicio-nota">Quem conduz a atividade pode apertar <kbd>G</kbd> a qualquer momento para abrir o guia do professor.</p>
+    </div>
+    <div class="inicio-ilu" id="ilu-inicio" aria-hidden="true"></div>
+  </main>
+
+  <!-- Jogo -->
+  <div id="tela-jogo" class="tela tela-jogo" hidden>
+    <header class="topo">
+      <div class="topo-marca">
+        <span class="marca marca-pequena" id="marca-topo" aria-hidden="true"></span>
+        <span class="topo-titulo">Central de Conexões</span>
+      </div>
+      <ol class="passos" id="passos" aria-label="Estações"></ol>
+      <div class="topo-info" id="topo-info" aria-live="polite"></div>
+    </header>
+
+    <section class="barra" aria-label="Estação atual">
+      <div class="barra-texto">
+        <h1 class="barra-nome" id="est-nome"></h1>
+        <p class="barra-missao" id="est-missao"></p>
+        <div class="faixa-dica" id="faixa-dica" hidden>
+          <span class="faixa-selo" id="faixa-selo"></span>
+          <span class="faixa-texto" id="faixa-texto"></span>
+          <button type="button" class="faixa-fechar" id="faixa-fechar" aria-label="Fechar a dica">&times;</button>
+        </div>
+      </div>
+      <div class="barra-botoes">
+        <button type="button" class="botao" id="btn-dica">Dica</button>
+        <button type="button" class="botao" id="btn-desfazer">Desfazer</button>
+        <button type="button" class="botao botao-discreto" id="btn-guia" title="Guia do professor (tecla G)">Guia</button>
+      </div>
+    </section>
+
+    <div class="mesa" id="mesa">
+      <section class="placa placa-conceitos" aria-labelledby="t-codigos">
+        <h2 class="placa-titulo" id="t-codigos">Códigos</h2>
+        <div class="coluna" id="col-conceitos"></div>
+      </section>
+      <div class="vao" aria-hidden="true"></div>
+      <section class="placa placa-efeitos" aria-labelledby="t-efeitos">
+        <h2 class="placa-titulo" id="t-efeitos">Efeitos</h2>
+        <div class="coluna" id="col-efeitos"></div>
+      </section>
+      <aside class="placa placa-celular" id="celular"></aside>
+      <svg class="cabos" id="cabos" aria-hidden="true" focusable="false"></svg>
+    </div>
+
+    <section class="nota" id="nota" aria-label="Explicação da última ligação"></section>
+  </div>
+
+  <!-- Tela final -->
+  <main id="tela-fim" class="tela tela-fim" hidden>
+    <div class="fim-coluna">
+      <div class="fim-resumo" id="fim-resumo"></div>
+      <section class="cola" id="cola" aria-label="Cola de revisão"></section>
+    </div>
+  </main>
+
+  <div id="camada-modal" class="camada-modal" hidden></div>
+  <div id="tutorial" class="tutorial" hidden role="dialog" aria-label="Tutorial"></div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <div id="anuncio" class="so-leitor" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="dados.js"></script>
+  <script src="ilustracoes.js"></script>
+  <script src="celular.js"></script>
+  <script src="jogo.js"></script>
+</body>
+</html>
